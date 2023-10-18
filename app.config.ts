@@ -52,6 +52,8 @@ const menus: Array<Menu> = [
       {
         label: 'Hero',
         to: '/admin/hero',
+        icon: 'i-iconoir-share-android',
+        count: 100,
       },
     ],
   },
@@ -68,7 +70,7 @@ export default defineAppConfig({
   menus,
   sidebar: {
     base: 'fixed top-0 left-0 z-40 sm:w-64 w-full h-screen bg-white border-r dark:bg-gray-800 border-gray-200 dark:border-gray-700 transition-transform ease-in-out delay-100',
-    title: 'mb-3.5 text-base font-semibold',
+    title: 'my-2.5 text-base font-semibold',
     show: 'sm:translate-x-0',
     hide: '-translate-x-full hidden',
     container: {
@@ -76,8 +78,8 @@ export default defineAppConfig({
       list: 'space-y-2 font-medium'
     },
     link: {
-      base: 'flex items-center text-black hover:text-blue-500 hover:bg-blue-100 rounded-md px-2.5 transition-all ',
-      active: 'bg-blue-50 text-blue-500 cursor-no-drop',
+      base: 'flex items-center text-black dark:text-blue-400 hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-md px-2.5 transition-all ',
+      active: 'bg-blue-50 dark:bg-blue-950 text-blue-500 dark:text-blue-400 cursor-no-drop',
       wrapper: 'flex items-center w-full',
       icon: 'w-5 h-5',
       label: 'text-sm truncate'
@@ -89,10 +91,10 @@ export default defineAppConfig({
     primary: 'blue',
     accordion: {
       "item": {
-        "base": "bg-gray-50/30 px-6 mt-2 rounded-md",
+        "base": "bg-gray-50/30 dark:bg-gray-600/10 px-6 pt-5 mt-2 rounded-md",
       },
       "default": {
-        "class": "py-3 w-full bg-transparent text-black hover:text-blue-500",
+        "class": "py-3 w-full bg-transparent dark:bg-transparent text-black hover:text-blue-500",
       },
     }
   }
