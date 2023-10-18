@@ -24,7 +24,7 @@ const { sidebar } = useAppConfig()
 const padding = computed(() => {
   if (props.mode === 'submenu') {
     if (props.item.icon) return 'py-1'
-    return 'py-3'
+    return 'py-2.5'
   }
 
   return 'py-1.5'
