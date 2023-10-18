@@ -1,14 +1,9 @@
 <script setup lang="ts">
-interface ObjectItem {
-  label: string
-  icon?: string
-  count?: number,
-  to?: string
-}
+import type { SubMenu } from "@/menus"
 
 defineProps({
   item: {
-    type: Object as PropType<ObjectItem>,
+    type: Object as PropType<SubMenu>,
     default: () => { },
     required: true,
   },
@@ -17,10 +12,17 @@ defineProps({
     default: 'menu',
   }
 })
+
+const { largerThanSm, toggleHide } = useSidebar()
+function onClickHideMenu() {
+  if (largerThanSm.value) return
+
+  toggleHide()
+}
 </script>
 
 <template>
-  <nuxt-link v-bind="$props" v-slot="{ isActive }" :to="item.to" class="custome-link">
+  <nuxt-link v-bind="$props" v-slot="{ isActive }" :to="item.to" class="custome-link" @click="onClickHideMenu">
     <div v-bind="$attrs" :class="['custome-link__container', { 'active': isActive }]">
 
       <div :class="['first', { 'py-3': mode === 'submenu', 'py-1.5': mode === 'menu' }]">
