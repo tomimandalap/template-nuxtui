@@ -68,13 +68,18 @@ const menus: Array<Menu> = [
 
 export default defineAppConfig({
   menus,
+  navbar: {
+    base: 'fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800',
+    container: 'px-3 py-5 lg:px-5 lg:pl-3',
+    wrapper: 'flex items-center justify-between',
+  },
   sidebar: {
-    base: 'fixed top-0 left-0 z-40 sm:w-64 w-full h-screen bg-white border-r dark:bg-gray-800 border-gray-200 dark:border-gray-700 transition-transform ease-in-out delay-100',
+    base: 'fixed top-0 left-0 z-40 sm:w-64 w-full h-screen border-r border-gray-200 dark:border-gray-800 transition-transform ease-in-out delay-100',
     title: 'my-2.5 text-base font-semibold',
     show: 'sm:translate-x-0',
     hide: '-translate-x-full hidden',
     container: {
-      base: 'h-full px-3 py-20 overflow-y-auto bg-white dark:bg-gray-800',
+      base: 'h-full px-3 py-20 overflow-y-auto bg-white dark:bg-gray-900',
       list: 'space-y-2 font-medium'
     },
     link: {

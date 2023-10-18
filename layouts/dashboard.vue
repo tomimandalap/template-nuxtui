@@ -11,7 +11,7 @@
 
 <style lang="scss" scoped>
 .main__app {
-  @apply p-4 sm:ml-64 bg-gray-50/30 dark:bg-gray-800 min-h-screen;
+  @apply px-5 py-9 sm:ml-64 min-h-screen;
 
   &__content {
     @apply p-4 rounded-lg my-14;
