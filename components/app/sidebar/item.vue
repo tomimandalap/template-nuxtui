@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { SubMenu } from "@/menus"
+import type { SubMenu } from "@/types/menus"
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object as PropType<SubMenu>,
     default: () => { },
@@ -19,18 +19,33 @@ function onClickHideMenu() {
 
   toggleHide()
 }
+
+const { sidebar } = useAppConfig()
+const padding = computed(() => {
+  if (props.mode === 'submenu') {
+    if (props.item.icon) return 'py-1'
+    return 'py-3'
+  }
+
+  return 'py-1.5'
+})
+const margin = computed(() => {
+  if (props.item.icon) return 'm-2'
+
+  return
+})
 </script>
 
 <template>
-  <nuxt-link v-bind="$props" v-slot="{ isActive }" :to="item.to" class="custome-link" @click="onClickHideMenu">
-    <div v-bind="$attrs" :class="['custome-link__container', { 'active': isActive }]">
+  <nuxt-link v-bind="$props" v-slot="{ isActive }" :to="item.to" @click="onClickHideMenu">
+    <div v-bind="$attrs" :class="[sidebar.link.base, isActive && sidebar.link.active]">
+      <div :class="[sidebar.link.wrapper, padding]">
 
-      <div :class="['first', { 'py-3': mode === 'submenu', 'py-1.5': mode === 'menu' }]">
         <template v-if="item.icon">
-          <UIcon :name="item.icon" class="icon" />
+          <UIcon :name="item.icon" :class="sidebar.link.icon" />
         </template>
 
-        <p :class="['label', { 'm-2': item.icon }]">{{ item.label }}</p>
+        <p :class="[sidebar.link.label, margin]">{{ item.label }}</p>
       </div>
 
       <template v-if="item.count">
@@ -39,30 +54,3 @@ function onClickHideMenu() {
     </div>
   </nuxt-link>
 </template>
-
-<style lang="scss" scoped>
-.custome-link {
-  &__container {
-    @apply flex items-center rounded-md px-2.5 transition-all;
-    @apply text-black hover:text-blue-500;
-    @apply hover:bg-blue-100;
-
-    &.active {
-      @apply bg-blue-50 text-blue-500 cursor-no-drop
-    }
-
-    & .first {
-      @apply flex items-center w-full;
-
-      & .icon {
-        @apply w-5 h-5;
-      }
-
-      & .label {
-        @apply text-sm truncate
-      }
-    }
-
-  }
-}
-</style>

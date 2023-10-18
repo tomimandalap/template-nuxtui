@@ -1,19 +1,16 @@
 <script setup lang="ts">
 const { menus, sidebar } = useAppConfig()
-
 const { show } = useSidebar()
 </script>
-
 <template>
-  <aside id="sidebar" :class="['sidebar', { 'sm:translate-x-0': show, '-translate-x-full hidden': !show, }]"
-    aria-label="Sidebar">
-    <div class="sidebar__container">
-      <ul class="list">
+  <aside id="sidebar" :class="[sidebar.base, show ? sidebar.show : sidebar.hide]" aria-label="Sidebar">
+    <div :class="sidebar.container.base">
+      <ul :class="sidebar.container.list">
 
         <li v-for="(menu, i) in menus" :key="`menu-item-${i}`" class="list__item">
           <!-- TITLE -->
           <template v-if="menu.title">
-            <h3 class="title">{{ menu.title }}</h3>
+            <h3 :class="sidebar.title">{{ menu.title }}</h3>
           </template>
           <!-- TITLE -->
 
@@ -38,27 +35,3 @@ const { show } = useSidebar()
     </div>
   </aside>
 </template>
-
-<style lang="scss" scoped>
-.sidebar {
-  @apply fixed top-0 left-0 z-40 sm:w-64 w-full h-screen;
-  @apply bg-white border-r dark:bg-gray-800;
-  @apply border-gray-200 dark:border-gray-700;
-  @apply transition-transform ease-in-out delay-100;
-
-  &__container {
-    @apply h-full px-3 py-20 overflow-y-auto;
-    @apply bg-white dark:bg-gray-800;
-
-    & .list {
-      @apply space-y-2 font-medium;
-
-      &__item {
-        & .title {
-          @apply mb-3.5 text-base font-semibold;
-        }
-      }
-    }
-  }
-}
-</style>
