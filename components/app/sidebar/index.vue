@@ -1,6 +1,17 @@
 <script setup lang="ts">
 const { menus, sidebar } = useAppConfig()
 const { show } = useSidebar()
+
+const colorMode = useColorMode()
+const isDark = computed({
+  get() {
+    return colorMode.value === 'dark'
+  },
+  set() {
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+  }
+})
+
 </script>
 <template>
   <aside id="sidebar" :class="[sidebar.base, show ? sidebar.show : sidebar.hide]" aria-label="Sidebar">
@@ -32,6 +43,11 @@ const { show } = useSidebar()
           <!-- END SUBMENU -->
         </li>
       </ul>
+
+    </div>
+
+    <div :class="sidebar.footer">
+      <UToggle v-model="isDark" />
     </div>
   </aside>
 </template>
