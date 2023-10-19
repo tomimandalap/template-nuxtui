@@ -16,10 +16,12 @@ const popover = {
   visibility: 'click',
   placement: 'bottom'
 }
+
+const masks = ref({ input: 'DD/MM/YYYY' })
 </script>
 
 <template>
-  <VDatePicker v-model.range="range" color="pink" :is-dark="isDark" :popover="popover">
+  <VDatePicker v-model.range="range" color="pink" :masks="masks" :is-dark="isDark" :popover="popover">
     <template #default="{ inputValue, inputEvents }">
       <UInput readonly :value="inputValue.start && inputValue.end ? `${inputValue.start} - ${inputValue.end}` : null"
         v-on="inputEvents.start" :placeholder="placeHolder" icon="i-iconoir-calendar" />
