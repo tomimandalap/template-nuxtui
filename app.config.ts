@@ -14,10 +14,10 @@ import type { Menu } from "@/types/menus"
 
 const menus: Array<Menu> = [
   {
-    title: 'Dashboard',
-    label: 'Analytics',
+    title: 'Analytics',
+    label: 'Incomes',
     slot: 'admin-analytics',
-    icon: 'i-iconoir-graph-up',
+    icon: 'i-iconoir-dollar',
     to: '/admin',
   },
   {
@@ -108,6 +108,14 @@ export default defineAppConfig({
         "onIcon": 'i-iconoir-sun-light',
         "offIcon": 'i-iconoir-moon-sat',
       },
+    },
+    notifications: {
+      position: 'top-0 right-0'
+    },
+    button: {
+      "default": {
+        "loadingIcon": "i-iconoir-system-restart"
+      }
     }
   }
 })

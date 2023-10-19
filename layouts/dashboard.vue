@@ -1,4 +1,5 @@
 <template>
+  <UNotifications />
   <app-navbar />
   <app-sidebar />
 
