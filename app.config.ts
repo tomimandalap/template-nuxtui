@@ -8,6 +8,14 @@ NOTE!
   to: '/admin', // optional when children are empty list submenus
   childs: [], // optional, but if exist must be an array of SubMenu
 }
+
+TITLE
+----------------
+LABEL 1
+LABEL 2
+LABEL 3
+-----------------
+  SUB LABEL 1
 */
 
 import type { Menu } from "@/types/menus"
@@ -30,6 +38,16 @@ const menus: Array<Menu> = [
       {
         label: 'Datepicker',
         to: '/admin/documentation/datepicker',
+      },
+      {
+        label: 'Input',
+        to: '/admin/documentation/input',
+        icon: 'i-iconoir-settings',
+      },
+      {
+        label: 'Button',
+        to: '/admin/documentation/button',
+        count: 1,
       },
     ],
   },
