@@ -89,6 +89,11 @@ export default defineAppConfig({
       icon: 'w-5 h-5',
       label: 'text-sm truncate'
     },
+    padding: {
+      base: 'py-0.5',
+      icon: 'py-0.5',
+      count: 'py-2.5'
+    }
   },
   ui: {
     strategy: 'override',
@@ -100,7 +105,7 @@ export default defineAppConfig({
         "padding": "pt-3 pb-1 px-3",
       },
       "default": {
-        "class": "py-3 w-full bg-transparent dark:bg-transparent text-black hover:text-blue-500",
+        "class": "py-2.5 w-full bg-transparent dark:bg-transparent text-black hover:text-blue-500",
       },
     },
     toggle: {

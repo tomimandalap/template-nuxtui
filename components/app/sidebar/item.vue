@@ -22,12 +22,15 @@ function onClickHideMenu() {
 
 const { sidebar } = useAppConfig()
 const padding = computed(() => {
+  const { base, icon, count } = sidebar.padding
+
   if (props.mode === 'submenu') {
-    if (props.item.icon) return 'py-1'
-    return 'py-2.5'
+    if (props.item.icon) return icon
+
+    return count
   }
 
-  return 'py-1.5'
+  return base
 })
 const margin = computed(() => {
   if (props.item.icon) return 'm-2'
