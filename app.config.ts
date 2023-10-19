@@ -23,7 +23,7 @@ const menus: Array<Menu> = [
   {
     title: 'Documentation',
     slot: 'admin-forms',
-    label: 'Forms',
+    label: 'Components',
     icon: 'i-iconoir-component',
     defaultOpen: true,
     childs: [
