@@ -19,10 +19,10 @@ const popover = {
 </script>
 
 <template>
-  <VDatePicker v-model.range="range" color="lime" :is-dark="isDark" :popover="popover">
+  <VDatePicker v-model.range="range" color="pink" :is-dark="isDark" :popover="popover">
     <template #default="{ inputValue, inputEvents }">
       <UInput readonly :value="inputValue.start && inputValue.end ? `${inputValue.start} - ${inputValue.end}` : null"
-        v-on="inputEvents.start" :placeholder="placeHolder" :ui="{ wrapper: 'w-full' }" />
+        v-on="inputEvents.start" :placeholder="placeHolder" icon="i-iconoir-calendar" />
     </template>
     <template #footer>
       <div class="px-2 pb-2">
@@ -33,7 +33,7 @@ const popover = {
 </template>
 
 <style lang="scss">
-.vc-lime {
+.vc-pink {
   --vc-accent-50: theme('colors.pink.50');
   --vc-accent-100: theme('colors.pink.100');
   --vc-accent-200: theme('colors.pink.200');

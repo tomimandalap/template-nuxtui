@@ -128,6 +128,9 @@ export default defineAppConfig({
       "default": {
         "loadingIcon": "i-iconoir-system-restart"
       }
+    },
+    input: {
+      "wrapper": "relative w-full",
     }
   }
 })
