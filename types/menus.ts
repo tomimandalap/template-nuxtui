@@ -8,6 +8,7 @@ export interface SubMenu {
 export interface MenuItem<T> {
   title?: string
   slot: string
+  defaultOpen?: boolean
   childs?: Array<T>,
 }
 

@@ -21,26 +21,15 @@ const menus: Array<Menu> = [
     to: '/admin',
   },
   {
-    label: 'Products',
-    slot: 'admin-products',
-    icon: 'i-iconoir-box-iso',
-    to: '/admin/products',
-    count: 10,
-  },
-  {
     title: 'Documentation',
     slot: 'admin-forms',
     label: 'Forms',
     icon: 'i-iconoir-component',
+    defaultOpen: true,
     childs: [
       {
-        label: 'Badge',
-        to: '/admin/badge',
-      },
-      {
-        label: 'Button',
-        to: '/admin/button',
-        count: 2,
+        label: 'Datepicker',
+        to: '/admin/documentation/datepicker',
       },
     ],
   },
@@ -70,17 +59,17 @@ export default defineAppConfig({
   menus,
   navbar: {
     base: 'fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800',
-    container: 'px-3 py-5 lg:px-5 lg:pl-3',
+    container: 'px-3 py-3.5 lg:px-5',
     wrapper: 'flex items-center justify-between',
   },
   sidebar: {
     base: 'fixed top-0 left-0 z-40 sm:w-64 w-full h-screen border-r border-gray-200 dark:border-gray-800 transition-transform ease-in-out delay-100',
-    title: 'my-2.5 text-base font-semibold',
+    title: 'my-2.5 text-sm font-semibold',
     show: 'sm:translate-x-0',
     hide: '-translate-x-full hidden',
     container: {
       base: 'h-full px-3 py-20 overflow-y-auto bg-white dark:bg-gray-900',
-      list: 'space-y-2 font-medium'
+      list: 'space-y-2 py-1.5 font-medium'
     },
     link: {
       base: 'flex items-center text-black dark:text-blue-400 hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-md px-2.5 transition-all ',
