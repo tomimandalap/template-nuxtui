@@ -40,13 +40,13 @@ const menus: Array<Menu> = [
         to: '/admin/documentation/datepicker',
       },
       {
-        label: 'Input',
-        to: '/admin/documentation/input',
+        label: 'Form Validation',
+        to: '/admin/documentation/form-validation',
         icon: 'i-iconoir-settings',
       },
       {
-        label: 'Button',
-        to: '/admin/documentation/button',
+        label: 'Input',
+        to: '/admin/documentation/input',
         count: 1,
       },
     ],
@@ -131,6 +131,9 @@ export default defineAppConfig({
     },
     input: {
       "wrapper": "relative w-full",
+    },
+    formGroup: {
+      "error": "mt-2 text-xs text-red-500 dark:text-red-400",
     }
   }
 })
