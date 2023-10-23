@@ -131,6 +131,11 @@ export default defineAppConfig({
     },
     input: {
       "wrapper": "relative w-full",
+      icon: {
+        trailing: {
+          pointer: ''
+        }
+      },
       default: {
         "size": "md",
       }

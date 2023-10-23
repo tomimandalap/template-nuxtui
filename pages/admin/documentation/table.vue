@@ -64,7 +64,22 @@ watch(page, (newValue) => {
   <h1 class="text-xl font-semibold">Table Responsive</h1>
 
   <div class="mt-5">
-    <UInput v-model="params.q" placeholder="Search by name..." />
+    <UInput
+      v-model="params.q"
+      icon="i-iconoir-search"
+      placeholder="Search by name..."
+    >
+      <template #trailing>
+        <UButton
+          v-show="params.q !== ''"
+          color="gray"
+          variant="link"
+          icon="i-iconoir-cancel"
+          :padded="false"
+          @click="params.q = ''"
+        />
+      </template>
+    </UInput>
 
     <UTable :loading="pending" :rows="products" :columns="columns">
       <template #category-header="{ column }">
