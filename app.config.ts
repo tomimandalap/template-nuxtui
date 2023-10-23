@@ -131,6 +131,9 @@ export default defineAppConfig({
     },
     input: {
       "wrapper": "relative w-full",
+      default: {
+        "size": "md",
+      }
     },
     formGroup: {
       "error": "mt-2 text-xs text-red-500 dark:text-red-400",

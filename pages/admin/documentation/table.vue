@@ -64,7 +64,7 @@ watch(page, (newValue) => {
   <h1 class="text-xl font-semibold">Table Responsive</h1>
 
   <div class="mt-5">
-    <UInput v-model="params.q" placeholder="Search by name..." size="lg" />
+    <UInput v-model="params.q" placeholder="Search by name..." />
 
     <UTable :loading="pending" :rows="products" :columns="columns">
       <template #category-header="{ column }">
