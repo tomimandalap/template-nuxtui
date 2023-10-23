@@ -45,8 +45,8 @@ const menus: Array<Menu> = [
         icon: 'i-iconoir-settings',
       },
       {
-        label: 'Input',
-        to: '/admin/documentation/input',
+        label: 'Table Responsive',
+        to: '/admin/documentation/table',
         count: 1,
       },
     ],
@@ -134,6 +134,26 @@ export default defineAppConfig({
     },
     formGroup: {
       "error": "mt-2 text-xs text-red-500 dark:text-red-400",
-    }
+    },
+    table: {
+      loadingState: {
+        label: 'text-md text-center',
+        icon: 'w-10 h-10 mx-auto mb-4 animate-spin',
+      },
+      emptyState: {
+        label: 'text-md text-center',
+        icon: 'w-10 h-10 mx-auto mb-4',
+      },
+      default: {
+        loadingState: {
+          icon: 'i-iconoir-system-restart',
+          label: 'Loading...',
+        },
+        emptyState: {
+          icon: 'i-iconoir-multiple-pages-empty',
+          label: 'Data not available',
+        },
+      },
+    },
   }
 })

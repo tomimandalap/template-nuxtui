@@ -19,5 +19,8 @@ export default defineNuxtConfig({
   },
   ui: {
     icons: ['iconoir']
-  }
+  },
+  runtimeConfig: {
+    apiBaseUrl: '',
+  },
 })
