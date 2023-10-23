@@ -1,13 +1,56 @@
 <script setup lang="ts">
+import type { Menu } from '@/types/menus'
+
 const { menus, sidebar } = useAppConfig()
 const { show } = useSidebar()
+
+const accordion = ref()
+const route = useRoute()
+
+function handleDefaultOpen(itemMenu: Menu) {
+  let result = []
+
+  if (itemMenu.childs) {
+    result = itemMenu.childs.filter((item) => item.to === route.fullPath)
+  }
+
+  return result.length > 0
+}
+
+function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
+  if (accordion.value && !accordion.value.length) return
+
+  if (type === 'menu') {
+    accordion.value.forEach((item: { buttonRefs: { close: () => void }[] }) => {
+      item.buttonRefs?.[0]?.close()
+    })
+    return
+  }
+
+  // for submenu
+  const itemSidebar = menus.filter((menu) => menu.childs && menu.childs.length)
+  const itemIndexSidebar = itemSidebar.findIndex((item) => item.slot === slot)
+
+  itemSidebar.forEach((_, index) => {
+    if (index !== itemIndexSidebar) {
+      accordion.value[index]?.buttonRefs?.[0]?.close()
+    }
+  })
+}
 </script>
 <template>
-  <aside id="sidebar" :class="[sidebar.base, show ? sidebar.show : sidebar.hide]" aria-label="Sidebar">
+  <aside
+    id="sidebar"
+    :class="[sidebar.base, show ? sidebar.show : sidebar.hide]"
+    aria-label="Sidebar"
+  >
     <div :class="sidebar.container.base">
       <ul :class="sidebar.container.list">
-
-        <li v-for="(menu, i) in menus" :key="`menu-item-${i}`" class="list__item">
+        <li
+          v-for="(menu, i) in menus"
+          :key="`menu-item-${i}`"
+          class="list__item"
+        >
           <!-- TITLE -->
           <template v-if="menu.title">
             <h3 :class="sidebar.title">{{ menu.title }}</h3>
@@ -16,16 +59,27 @@ const { show } = useSidebar()
 
           <!-- MENU -->
           <template v-if="!menu.childs || !menu.childs.length">
-            <app-sidebar-item :item="menu" />
+            <app-sidebar-item :item="menu" @click="handleCloseOthers('menu')" />
           </template>
           <!-- MENU -->
 
           <!-- SUBMENU -->
           <template v-else>
-            <UAccordion multiple :items="[menu]">
+            <UAccordion
+              ref="accordion"
+              multiple
+              :items="[menu]"
+              :default-open="handleDefaultOpen(menu)"
+              @click="handleCloseOthers('submenu', menu.slot)"
+            >
               <template v-slot:[`${menu.slot}`]="{ item, index }">
-                <app-sidebar-item v-for="(submenu, idx) in item.childs" :key="`submenu-${index}-${idx}`" :item="submenu"
-                  mode="submenu" class="mb-2" />
+                <app-sidebar-item
+                  v-for="(submenu, idx) in item.childs"
+                  :key="`submenu-${index}-${idx}`"
+                  :item="submenu"
+                  mode="submenu"
+                  class="mb-2"
+                />
               </template>
             </UAccordion>
           </template>

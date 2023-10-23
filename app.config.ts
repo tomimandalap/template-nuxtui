@@ -33,7 +33,7 @@ const menus: Array<Menu> = [
     slot: 'admin-forms',
     label: 'Components',
     icon: 'i-iconoir-component',
-    defaultOpen: true,
+    // defaultOpen: true,
     childs: [
       {
         label: 'Datepicker',
