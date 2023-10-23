@@ -155,5 +155,15 @@ export default defineAppConfig({
         },
       },
     },
+    pagination: {
+      default: {
+        prevButton: {
+          "icon": "i-iconoir-nav-arrow-left"
+        },
+        nextButton: {
+          "icon": "i-iconoir-nav-arrow-right"
+        }
+      }
+    }
   }
 })
