@@ -109,9 +109,12 @@ export default defineAppConfig({
     link: {
       wrapper: 'flex items-center',
       hover: 'hover:text-blue-500 hover:underline',
-      inactive: 'text-gray-400',
+      inactive: 'text-gray-400 cursor-no-drop',
     },
-    icon: 'i-iconoir-nav-arrow-right'
+    default: {
+      icon: 'i-iconoir-nav-arrow-right',
+      path: '/admin/incomes',
+    }
   },
   ui: {
     strategy: 'override',

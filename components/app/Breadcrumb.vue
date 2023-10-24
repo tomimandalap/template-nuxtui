@@ -18,13 +18,13 @@ const items = computed<string[]>(() => {
         :class="breadcrumb.li"
       >
         <nuxt-link
-          to="/admin"
+          :to="breadcrumb.default.path"
           :class="[
             index ? breadcrumb.link.inactive : breadcrumb.link.hover,
             breadcrumb.link.wrapper,
           ]"
         >
-          <UIcon v-if="index" :name="breadcrumb.icon" />
+          <UIcon v-if="index" :name="breadcrumb.default.icon" />
           {{ link }}
         </nuxt-link>
       </li>
