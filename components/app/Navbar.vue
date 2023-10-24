@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { navbar } = useAppConfig()
 const { show, toggleShow, toggleHide } = useSidebar()
+const { breadcrumb } = useAppConfig()
 
 function onClickMenubar() {
   if (show.value) {
@@ -12,19 +13,27 @@ function onClickMenubar() {
 }
 
 const items = [
-  [{
-    label: 'Account',
-    slot: 'account',
-    disabled: true
-  }], [{
-    label: 'Mode',
-    slot: 'darkmode',
-    disabled: true
-  }], [{
-    label: 'Sign out',
-    icon: 'i-heroicons-arrow-left-on-rectangle',
-    click: () => logout()
-  }]
+  [
+    {
+      label: 'Account',
+      slot: 'account',
+      disabled: true,
+    },
+  ],
+  [
+    {
+      label: 'Mode',
+      slot: 'darkmode',
+      disabled: true,
+    },
+  ],
+  [
+    {
+      label: 'Sign out',
+      icon: 'i-heroicons-arrow-left-on-rectangle',
+      click: () => logout(),
+    },
+  ],
 ]
 
 const router = useRouter()
@@ -39,7 +48,7 @@ const isDark = computed({
   },
   set() {
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-  }
+  },
 })
 </script>
 
@@ -48,19 +57,31 @@ const isDark = computed({
     <div :class="navbar.container">
       <div :class="navbar.wrapper">
         <div class="flex items-center justify-start">
+          <UButton
+            icon="i-iconoir-menu"
+            variant="link"
+            class="sm:hidden"
+            @click="onClickMenubar"
+          />
 
-          <UButton icon="i-iconoir-menu" variant="link" class="sm:hidden" @click="onClickMenubar" />
-
-          <nuxt-link to="/admin">
-            <h4 class="ms-2 sm:ms-0 text-lg font-semibold capitalize">Dashboard</h4>
+          <nuxt-link
+            :to="breadcrumb.default.path ? breadcrumb.default.path : '/'"
+          >
+            <h4 class="ms-2 sm:ms-0 text-lg font-semibold capitalize">
+              Dashboard
+            </h4>
           </nuxt-link>
-
         </div>
         <div class="flex items-center">
           <div class="flex items-center ml-3">
-            <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }"
-              :popper="{ placement: 'bottom-start' }">
-              <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" />
+            <UDropdown
+              :items="items"
+              :ui="{ item: { disabled: 'cursor-text select-text' } }"
+              :popper="{ placement: 'bottom-start' }"
+            >
+              <UAvatar
+                src="https://avatars.githubusercontent.com/u/739984?v=4"
+              />
 
               <template #account="{ item }">
                 <div class="text-left">
@@ -83,7 +104,10 @@ const isDark = computed({
               </template>
               <template #item="{ item }">
                 <span class="truncate">{{ item.label }}</span>
-                <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto" />
+                <UIcon
+                  :name="item.icon"
+                  class="flex-shrink-0 h-4 w-4 text-gray-400 dark:text-gray-500 ms-auto"
+                />
               </template>
             </UDropdown>
           </div>
