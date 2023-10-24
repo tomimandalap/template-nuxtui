@@ -26,7 +26,7 @@ const menus: Array<Menu> = [
     label: 'Incomes',
     slot: 'admin-analytics',
     icon: 'i-iconoir-dollar',
-    to: '/admin',
+    to: '/admin/incomes',
   },
   {
     title: 'Documentation',
@@ -101,6 +101,17 @@ export default defineAppConfig({
       icon: 'py-0.5',
       count: 'py-2.5'
     }
+  },
+  breadcrumb: {
+    wrapper: 'mt-12',
+    ul: 'inline-flex items-center space-x-2',
+    li: 'inline-flex items-center capitalize text-sm',
+    link: {
+      wrapper: 'flex items-center',
+      hover: 'hover:text-blue-500 hover:underline',
+      inactive: 'text-gray-400',
+    },
+    icon: 'i-iconoir-nav-arrow-right'
   },
   ui: {
     strategy: 'override',

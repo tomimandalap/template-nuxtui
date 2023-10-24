@@ -17,6 +17,18 @@ function handleDefaultOpen(itemMenu: Menu) {
   return result.length > 0
 }
 
+// handle close accordion when click menu without childs
+watch(
+  () => route.fullPath,
+  (newValue) => {
+    const isDeep = newValue.split('/').filter((item) => item).length > 2
+
+    if (newValue && !isDeep) {
+      handleCloseOthers('menu')
+    }
+  },
+)
+
 function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
   if (accordion.value && !accordion.value.length) return
 
@@ -59,7 +71,7 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
 
           <!-- MENU -->
           <template v-if="!menu.childs || !menu.childs.length">
-            <app-sidebar-item :item="menu" @click="handleCloseOthers('menu')" />
+            <app-sidebar-item :item="menu" />
           </template>
           <!-- MENU -->
 
