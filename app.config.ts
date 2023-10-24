@@ -52,13 +52,13 @@ const menus: Array<Menu> = [
     ],
   },
   {
-    label: 'Navigations',
-    slot: 'admin-navigation',
-    icon: 'i-iconoir-book',
+    label: 'Products',
+    slot: 'admin-products',
+    icon: 'i-iconoir-box-iso',
     childs: [
       {
-        label: 'Hero',
-        to: '/admin/hero',
+        label: 'All',
+        to: '/admin/products/all',
         icon: 'i-iconoir-share-android',
         count: 100,
       },
@@ -117,8 +117,8 @@ export default defineAppConfig({
     },
     toggle: {
       "default": {
-        "onIcon": 'i-iconoir-sun-light',
-        "offIcon": 'i-iconoir-moon-sat',
+        "onIcon": 'i-iconoir-moon-sat',
+        "offIcon": 'i-iconoir-sun-light',
       },
     },
     notifications: {
