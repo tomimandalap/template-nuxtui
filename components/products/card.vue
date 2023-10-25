@@ -21,6 +21,7 @@ const { isLoading } = useImage({ src: props.product.thumbnail })
     </template>
 
     <template v-else>
+      {{ product.id }}
       <img
         :src="product.thumbnail"
         :alt="`image-${product.title}`"

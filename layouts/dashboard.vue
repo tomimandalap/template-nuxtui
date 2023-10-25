@@ -16,8 +16,7 @@
   @apply px-5 py-9 sm:ml-64 min-h-screen;
 
   &__content {
-    @apply p-4 rounded-lg my-5;
-    @apply border-2 border-dashed border-gray-200 dark:border-gray-700;
+    @apply my-5;
   }
 }
 </style>

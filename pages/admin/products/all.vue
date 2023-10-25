@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { IUser } from '@/types/responses/products_response_type'
+
 definePageMeta({
   layout: 'dashboard',
 })
@@ -39,20 +40,29 @@ useInfiniteScroll(
   },
   { distance: 100 },
 )
+
+const { list, containerProps, wrapperProps } = useVirtualList(products, {
+  itemHeight: 1,
+  overscan: 10,
+})
 </script>
 <template>
   <h1 class="text-xl font-semibold mb-5">Products</h1>
-
-  <div
-    ref="productContainer"
-    class="grid grid-cols-12 gap-5 h-[calc(100vh-14rem)] overflow-auto"
-  >
-    <div
-      v-for="(product, index) in products"
-      :key="`product-card-${index}`"
-      class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
-    >
-      <products-card :product="product" />
+  <!-- <pre>{{ wrapperProps }}</pre> -->
+  <div v-bind="containerProps">
+    <div v-bind="wrapperProps" style="height: calc(100vh - 14rem) !important">
+      <div
+        ref="productContainer"
+        class="grid grid-cols-12 gap-5 h-[calc(100vh-14rem)] overflow-auto p-0.5"
+      >
+        <div
+          v-for="product in list"
+          :key="`product-card-${product.index}`"
+          class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
+        >
+          <products-card :product="product.data" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
