@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Menu } from '@/types/menus'
+import type { Menu, MenuItem, SubMenu } from '@/types/menu_type'
 
-const { menus, sidebar } = useAppConfig()
-const { show } = useSidebar()
+const { sidebar } = useAppConfig()
+const { show, menus } = useSidebar()
 
 const accordion = ref()
 const route = useRoute()
@@ -40,10 +40,14 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
   }
 
   // for submenu
-  const itemSidebar = menus.filter((menu) => menu.childs && menu.childs.length)
-  const itemIndexSidebar = itemSidebar.findIndex((item) => item.slot === slot)
+  const itemSidebar = menus.value.filter(
+    (menu: MenuItem<SubMenu>) => menu.childs && menu.childs.length,
+  )
+  const itemIndexSidebar = itemSidebar.findIndex(
+    (item: MenuItem<SubMenu>) => item.slot === slot,
+  )
 
-  itemSidebar.forEach((_, index) => {
+  itemSidebar.forEach((_: any, index: number) => {
     if (index !== itemIndexSidebar) {
       accordion.value[index]?.buttonRefs?.[0]?.close()
     }
@@ -82,8 +86,31 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
               multiple
               :items="[menu]"
               :default-open="handleDefaultOpen(menu)"
-              @click="handleCloseOthers('submenu', menu.slot)"
             >
+              <template #default="{ item, open }">
+                <UButton
+                  :label="item.label"
+                  variant="ghost"
+                  size="lg"
+                  @click="handleCloseOthers('submenu', menu.slot)"
+                >
+                  <template v-if="item.icon" #leading>
+                    <Icon :name="item.icon" :class="sidebar.link.icon" />
+                  </template>
+
+                  <template #trailing>
+                    <UIcon
+                      name="i-iconoir-nav-arrow-right"
+                      :class="[
+                        open && 'rotate-90',
+                        sidebar.link.icon,
+                        'ms-auto transform transition-transform duration-200',
+                      ]"
+                    />
+                  </template>
+                </UButton>
+              </template>
+
               <template v-slot:[`${menu.slot}`]="{ item, index }">
                 <app-sidebar-item
                   v-for="(submenu, idx) in item.childs"
@@ -101,3 +128,4 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
     </div>
   </aside>
 </template>
+~/types/menu

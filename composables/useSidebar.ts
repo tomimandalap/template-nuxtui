@@ -19,10 +19,23 @@ const toggleHide = () => {
 }
 
 export function useSidebar() {
+  const { sidebar: { menu } } = useAppConfig()
+  const { hasRole } = usePermission()
+
+  const menus = computed(() => menu.filter(menu => hasRole(menu.roles)).map((menu) => {
+    // console.log('test', menu, menu.childs);
+
+    return {
+      ...menu,
+      childs: menu.childs?.filter(submenu => hasRole(submenu.roles)),
+    }
+  }))
+
   return {
     show,
     largerThanSm,
     toggleShow,
-    toggleHide
+    toggleHide,
+    menus
   }
 }

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { SubMenu } from "@/types/menus"
+import type { SubMenu } from '@/types/menu_type'
 
 const props = defineProps({
   item: {
     type: Object as PropType<SubMenu>,
-    default: () => { },
+    default: () => {},
     required: true,
   },
   mode: {
     type: String as PropType<'menu' | 'submenu'>,
     default: 'menu',
-  }
+  },
 })
 
 const { largerThanSm, toggleHide } = useSidebar()
@@ -40,12 +40,19 @@ const margin = computed(() => {
 </script>
 
 <template>
-  <nuxt-link v-bind="$props" v-slot="{ isActive }" :to="item.to" @click="onClickHideMenu">
-    <div v-bind="$attrs" :class="[sidebar.link.base, isActive && sidebar.link.active]">
+  <nuxt-link
+    v-bind="$props"
+    v-slot="{ isActive }"
+    :to="item.to"
+    @click="onClickHideMenu"
+  >
+    <div
+      v-bind="$attrs"
+      :class="[sidebar.link.base, isActive && sidebar.link.active]"
+    >
       <div :class="[sidebar.link.wrapper, padding]">
-
         <template v-if="item.icon">
-          <UIcon :name="item.icon" :class="sidebar.link.icon" />
+          <Icon :name="item.icon" :class="sidebar.link.icon" />
         </template>
 
         <p :class="[sidebar.link.label, margin]">{{ item.label }}</p>
@@ -57,3 +64,4 @@ const margin = computed(() => {
     </div>
   </nuxt-link>
 </template>
+~/types/menu

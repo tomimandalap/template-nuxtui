@@ -1,86 +1,13 @@
-/*
-NOTE!
-{
-  title: 'Dashboard', // optional
-  label: 'Analytics', // required
-  slot: 'admin-analytics',  // required, mustbe unique value
-  icon: 'i-iconoir-graph-up', // optional
-  to: '/admin', // optional when children are empty list submenus
-  childs: [], // optional, but if exist must be an array of SubMenu
-}
-
-TITLE
-----------------
-LABEL 1
-LABEL 2
-LABEL 3
------------------
-  SUB LABEL 1
-*/
-
-import type { Menu } from "@/types/menus"
-
-const menus: Array<Menu> = [
-  {
-    title: 'Analytics',
-    label: 'Incomes',
-    slot: 'admin-analytics',
-    icon: 'i-iconoir-dollar',
-    to: '/admin/incomes',
-  },
-  {
-    title: 'Documentation',
-    slot: 'admin-forms',
-    label: 'Components',
-    icon: 'i-iconoir-component',
-    // defaultOpen: true,
-    childs: [
-      {
-        label: 'Datepicker',
-        to: '/admin/documentation/datepicker',
-      },
-      {
-        label: 'Form Validation',
-        to: '/admin/documentation/form-validation',
-        icon: 'i-iconoir-settings',
-      },
-      {
-        label: 'Table Responsive',
-        to: '/admin/documentation/table',
-        count: 1,
-      },
-    ],
-  },
-  {
-    label: 'Products',
-    slot: 'admin-products',
-    icon: 'i-iconoir-box-iso',
-    childs: [
-      {
-        label: 'All',
-        to: '/admin/products/all',
-        icon: 'i-iconoir-share-android',
-        count: 100,
-      },
-    ],
-  },
-  {
-    title: 'Settings',
-    slot: 'admin-users',
-    label: 'Users',
-    icon: 'i-iconoir-group',
-    to: '/admin/users',
-  },
-]
+import menu from "@/constants/menu"
 
 export default defineAppConfig({
-  menus,
   navbar: {
     base: 'fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800',
     container: 'px-3 py-3.5 lg:px-5',
     wrapper: 'flex items-center justify-between',
   },
   sidebar: {
+    menu,
     base: 'fixed top-0 left-0 z-40 sm:w-64 w-full h-screen border-r border-gray-200 dark:border-gray-800 transition-transform ease-in-out delay-100',
     title: 'my-2.5 text-sm font-semibold',
     show: 'sm:translate-x-0',

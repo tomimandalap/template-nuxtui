@@ -3,6 +3,7 @@ export interface SubMenu {
   icon?: string
   to?: string
   count?: number
+  roles?: string[] | string
 }
 
 export interface MenuItem<T> {
