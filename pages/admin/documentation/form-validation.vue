@@ -45,27 +45,30 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 </script>
 
 <template>
-  <h1 class="text-xl font-semibold">Form Validation</h1>
-
-  <div class="grid grid-cols-12 gap-5 my-5">
+  <div class="grid grid-cols-12 gap-5">
     <div class="col-span-12">
-      <UForm ref="forms" :schema="schema" :state="state" @submit="onSubmit">
-        <UFormGroup label="Name" name="name" class="mb-3">
-          <UInput v-model="state.name" />
-        </UFormGroup>
+      <UCard>
+        <h1 class="text-xl font-semibold mb-5">Form Validation</h1>
+        <UForm ref="forms" :schema="schema" :state="state" @submit="onSubmit">
+          <UFormGroup label="Name" name="name" class="mb-3">
+            <UInput v-model="state.name" />
+          </UFormGroup>
 
-        <UFormGroup label="Email" name="email" required class="mb-3">
-          <UInput v-model="state.email" />
-        </UFormGroup>
+          <UFormGroup label="Email" name="email" required class="mb-3">
+            <UInput v-model="state.email" />
+          </UFormGroup>
 
-        <UFormGroup label="Password" name="password" required class="mb-3">
-          <UInput v-model="state.password" type="password" />
-        </UFormGroup>
+          <UFormGroup label="Password" name="password" required class="mb-3">
+            <UInput v-model="state.password" type="password" />
+          </UFormGroup>
 
-        <UButton color="gray" @click="onResetForm" class="me-3">Reset</UButton>
+          <UButton color="gray" @click="onResetForm" class="me-3">
+            Reset
+          </UButton>
 
-        <UButton type="submit">Submit</UButton>
-      </UForm>
+          <UButton type="submit">Submit</UButton>
+        </UForm>
+      </UCard>
     </div>
   </div>
 </template>
