@@ -61,9 +61,8 @@ watch(page, (newValue) => {
 </script>
 
 <template>
-  <h1 class="text-xl font-semibold">Table Responsive</h1>
-
-  <div class="mt-5">
+  <UCard>
+    <h1 class="text-xl font-semibold mb-5">Table Responsive</h1>
     <UInput
       v-model="params.q"
       icon="i-iconoir-search"
@@ -121,5 +120,5 @@ watch(page, (newValue) => {
         :total="totalData"
       />
     </div>
-  </div>
+  </UCard>
 </template>
