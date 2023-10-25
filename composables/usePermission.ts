@@ -14,14 +14,12 @@ export default function () {
 
     // return roles === user.value.level
 
+    if (roles) {
+      if (roles.includes('super_admin')) return true;
+      if (roles.includes('admin')) return false
+    }
 
-    if (roles === undefined) return
-
-    if (roles.includes('super_admin')) return true;
-
-    if (roles.includes('admin')) return false
-
-    // return true
+    return true
   }
 
   return {

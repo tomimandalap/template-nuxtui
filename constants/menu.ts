@@ -7,6 +7,7 @@ NOTE!
   icon: 'i-iconoir-graph-up', // optional
   to: '/admin', // optional when children are empty list submenus
   childs: [], // optional, but if exist must be an array of SubMenu
+  roles: ['admin'], // optional but when you create permission it must be add roles in level menu or menu & submenu at childs
 }
 
 TITLE
@@ -27,7 +28,7 @@ const menu: Array<Menu> = [
     slot: 'admin-analytics',
     icon: 'i-iconoir-dollar',
     to: '/admin/incomes',
-    roles: ['admin'],
+    // roles: ['admin'],
   },
   {
     title: 'Sub Menu',
@@ -77,7 +78,7 @@ const menu: Array<Menu> = [
     label: 'Users',
     icon: 'i-iconoir-group',
     to: '/admin/users',
-    roles: ['super_admin'],
+    roles: ['admin'],
   },
 ]
 
