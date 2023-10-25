@@ -17,7 +17,7 @@ export default defineAppConfig({
       list: 'space-y-2 py-1.5 font-medium'
     },
     link: {
-      base: 'flex items-center text-black dark:text-blue-400 hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-md px-2.5 transition-all ',
+      base: 'flex items-center text-black dark:text-white hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-950 rounded-md px-2.5 transition-all ',
       active: 'bg-blue-50 dark:bg-blue-950 text-blue-500 dark:text-blue-400 cursor-no-drop',
       wrapper: 'flex items-center w-full',
       icon: 'w-5 h-5',
@@ -67,7 +67,8 @@ export default defineAppConfig({
     },
     button: {
       "default": {
-        "loadingIcon": "i-iconoir-system-restart"
+        "loadingIcon": "i-iconoir-system-restart",
+        size: "lg"
       }
     },
     input: {

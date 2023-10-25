@@ -91,7 +91,7 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
                 <UButton
                   :label="item.label"
                   variant="ghost"
-                  size="lg"
+                  color="transparent"
                   @click="handleCloseOthers('submenu', menu.slot)"
                 >
                   <template v-if="item.icon" #leading>
