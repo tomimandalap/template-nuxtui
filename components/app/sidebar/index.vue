@@ -33,9 +33,12 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
   if (accordion.value && !accordion.value.length) return
 
   if (type === 'menu') {
+    if (!accordion.value) return
+
     accordion.value.forEach((item: { buttonRefs: { close: () => void }[] }) => {
       item.buttonRefs?.[0]?.close()
     })
+
     return
   }
 
