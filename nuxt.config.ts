@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' }
+  },
   modules: ["nuxt-icon", "@nuxt/ui-edge", "@nuxtjs/google-fonts", '@vueuse/nuxt',],
   vueuse: {
     autoImports: true,

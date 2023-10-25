@@ -47,20 +47,22 @@ const { list, containerProps, wrapperProps } = useVirtualList(products, {
 })
 </script>
 <template>
-  <h1 class="text-xl font-semibold mb-5">Products</h1>
-  <!-- <pre>{{ wrapperProps }}</pre> -->
-  <div v-bind="containerProps">
-    <div v-bind="wrapperProps" style="height: calc(100vh - 14rem) !important">
-      <div
-        ref="productContainer"
-        class="grid grid-cols-12 gap-5 h-[calc(100vh-14rem)] overflow-auto p-0.5"
-      >
+  <div>
+    <h1 class="text-xl font-semibold mb-5">Products</h1>
+    <!-- <pre>{{ wrapperProps }}</pre> -->
+    <div v-bind="containerProps">
+      <div v-bind="wrapperProps" style="height: calc(100vh - 14rem) !important">
         <div
-          v-for="product in list"
-          :key="`product-card-${product.index}`"
-          class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
+          ref="productContainer"
+          class="grid grid-cols-12 gap-5 h-[calc(100vh-14rem)] overflow-auto p-0.5"
         >
-          <products-card :product="product.data" />
+          <div
+            v-for="product in list"
+            :key="`product-card-${product.index}`"
+            class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
+          >
+            <products-card :product="product.data" />
+          </div>
         </div>
       </div>
     </div>
