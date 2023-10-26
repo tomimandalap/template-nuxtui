@@ -1,17 +1,14 @@
 <template>
-  <nuxt-layout>
-    <nuxt-loading-indicator />
-    <nuxt-page />
-  </nuxt-layout>
+  <div id="app">
+    <nuxt-layout>
+      <nuxt-loading-indicator />
+      <nuxt-page />
+    </nuxt-layout>
+  </div>
 </template>
 
-<!-- <style lang="scss">
-.page-enter-active,
-.page-leave-active {
-  @apply transition-all delay-[0.4s];
+<style lang="scss" scoped>
+#app {
+  @apply bg-gray-50/50;
 }
-.page-enter-from,
-.page-leave-to {
-  @apply opacity-0 translate-y-1;
-}
-</style> -->
+</style>

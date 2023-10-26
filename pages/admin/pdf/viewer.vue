@@ -1,10 +1,10 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Users',
+  title: 'PDF Viewer',
   layout: 'dashboard',
 })
 </script>
 
 <template>
-  <h1>USERS</h1>
+  <h1>Hello</h1>
 </template>

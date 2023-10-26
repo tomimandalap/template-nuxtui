@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const { title } = useAppConfig()
+const route = useRoute()
+
+useHead({
+  titleTemplate() {
+    return `${title} - ${route.meta.title}`
+  },
+})
+</script>
+
 <template>
   <UNotifications />
   <app-navbar />

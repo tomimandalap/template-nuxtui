@@ -2,6 +2,7 @@
 import type { IUser } from '@/types/responses/products_response_type'
 
 definePageMeta({
+  title: 'All Product',
   layout: 'dashboard',
 })
 

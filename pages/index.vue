@@ -1,3 +1,10 @@
+<script setup lang="ts">
+definePageMeta({
+  title: 'Home',
+  layout: 'default',
+})
+</script>
+
 <template>
   <UContainer>
     <UCard class="mt-10">

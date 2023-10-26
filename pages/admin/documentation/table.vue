@@ -2,6 +2,7 @@
 import { watchDebounced } from '@vueuse/core'
 
 definePageMeta({
+  title: 'Table Responsive',
   layout: 'dashboard',
 })
 

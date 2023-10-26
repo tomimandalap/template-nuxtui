@@ -1,5 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
+  title: 'Datepicker',
   layout: 'dashboard',
 })
 

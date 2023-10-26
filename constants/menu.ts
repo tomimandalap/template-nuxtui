@@ -31,9 +31,9 @@ const menu: Array<Menu> = [
     // roles: ['admin'],
   },
   {
-    title: 'Sub Menu',
+    title: 'Documentation',
     slot: 'admin-forms',
-    label: 'Documentation',
+    label: 'Components',
     icon: 'i-iconoir-component',
     roles: ['super_admin'],
     // defaultOpen: true,
@@ -71,6 +71,14 @@ const menu: Array<Menu> = [
         roles: ['super_admin'],
       },
     ],
+  },
+  {
+    title: 'PDF',
+    slot: 'admin-pdf',
+    label: 'Viewer',
+    icon: 'i-iconoir-google-docs',
+    to: '/admin/pdf/viewer',
+    roles: ['super_admin'],
   },
   {
     title: 'Settings',
