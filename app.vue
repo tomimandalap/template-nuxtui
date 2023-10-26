@@ -5,7 +5,7 @@
   </nuxt-layout>
 </template>
 
-<style lang="scss">
+<!-- <style lang="scss">
 .page-enter-active,
 .page-leave-active {
   @apply transition-all delay-[0.4s];
@@ -14,4 +14,4 @@
 .page-leave-to {
   @apply opacity-0 translate-y-1;
 }
-</style>
+</style> -->
