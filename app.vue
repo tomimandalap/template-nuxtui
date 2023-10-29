@@ -9,6 +9,6 @@
 
 <style lang="scss" scoped>
 #app {
-  @apply bg-gray-50/50;
+  @apply bg-gray-50/50 dark:bg-gray-950;
 }
 </style>
