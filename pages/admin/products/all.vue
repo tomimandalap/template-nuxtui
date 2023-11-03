@@ -25,7 +25,6 @@ const load = async (): Promise<void> => {
   }
 }
 
-// first load
 await load()
 
 const productContainer = ref<HTMLElement | null>(null)

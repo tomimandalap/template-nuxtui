@@ -6,7 +6,7 @@ export default function () {
       method: 'GET',
       params,
       watch: false,
-      lazy: true
+      // lazy: true
     })
   }
 
