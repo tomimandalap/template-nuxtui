@@ -1,14 +1,6 @@
 <template>
-  <div id="app">
-    <nuxt-layout>
-      <nuxt-loading-indicator />
-      <nuxt-page />
-    </nuxt-layout>
-  </div>
+  <nuxt-layout>
+    <nuxt-loading-indicator />
+    <nuxt-page />
+  </nuxt-layout>
 </template>
-
-<style lang="scss" scoped>
-#app {
-  @apply bg-gray-50/50 dark:bg-gray-950;
-}
-</style>
