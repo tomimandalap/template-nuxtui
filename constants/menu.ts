@@ -75,9 +75,9 @@ const menu: Array<Menu> = [
   {
     title: 'PDF',
     slot: 'admin-pdf',
-    label: 'Viewer',
+    label: 'View',
     icon: 'i-iconoir-google-docs',
-    to: '/admin/pdf/viewer',
+    to: '/admin/pdf/view',
     roles: ['super_admin'],
   },
   {
