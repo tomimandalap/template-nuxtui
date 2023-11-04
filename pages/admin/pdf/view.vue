@@ -13,8 +13,11 @@ function openDocument(event: Event) {
   }
 
   const target = event.target as HTMLInputElement
+
   if (target) {
-    pdfFile.value = window.URL.createObjectURL(target.files![0])
+    pdfFile.value = target.files?.length
+      ? window.URL.createObjectURL(target.files![0])
+      : undefined
   }
 }
 
