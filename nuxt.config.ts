@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   // app: {
   //   pageTransition: { name: 'page', mode: 'out-in' }
   // },
-  modules: ["nuxt-icon", "@nuxt/ui-edge", "@nuxtjs/google-fonts", '@vueuse/nuxt',],
+  modules: ["nuxt-icon", "@nuxt/ui", "@nuxtjs/google-fonts", '@vueuse/nuxt',],
   vueuse: {
     autoImports: true,
   },
