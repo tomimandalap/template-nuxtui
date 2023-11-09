@@ -9,8 +9,10 @@ const accordion = ref()
 const route = useRoute()
 
 const classContainerBackdrop = computed<string>(() => {
-  if (show.value && !largerThanSm.value) {
-    return 'fixed top-0 bottom-0 left-0 right-0 z-20 bg-black/50 visible transition-all delay-50'
+  if (show.value) {
+    if (largerThanSm.value) return ''
+    else
+      return 'fixed top-0 bottom-0 left-0 right-0 z-20 bg-black/50 visible transition-all delay-100'
   }
 
   return ''
