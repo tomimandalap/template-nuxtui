@@ -32,7 +32,7 @@ const menu: Array<Menu> = [
   },
   {
     title: 'Documentation',
-    slot: 'admin-forms',
+    slot: 'admin-documentation',
     label: 'Components',
     icon: 'i-iconoir-component',
     roles: ['super_admin'],
