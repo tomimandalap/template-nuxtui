@@ -14,7 +14,7 @@ const props = defineProps({
 })
 
 const { sidebar } = useAppConfig()
-const { largerThanSm } = useSidebar()
+const { largerThanSm, toggleHide } = useSidebar()
 
 const padding = computed<string>(() => {
   const { base, icon, count } = sidebar.padding
@@ -35,10 +35,22 @@ const margin = computed<string | undefined>(() => {
 })
 
 const isModeMiniSidebar = computed<boolean>(() => props.mode === 'mini')
+
+const handleCloseMiniSidebar = () => {
+  if (!largerThanSm.value) {
+    toggleHide()
+    return
+  }
+}
 </script>
 
 <template>
-  <nuxt-link v-bind="$props" v-slot="{ isActive }" :to="item.to">
+  <nuxt-link
+    v-bind="$props"
+    v-slot="{ isActive }"
+    :to="item.to"
+    @click="handleCloseMiniSidebar"
+  >
     <!-- MINI SIDEBAR MODE -->
     <template v-if="isModeMiniSidebar">
       <div

@@ -9,10 +9,10 @@ export default defineAppConfig({
   },
   sidebar: {
     menu,
-    base: 'fixed top-0 left-0 z-40 sm:w-64 w-16 h-screen border-r border-gray-200 dark:border-gray-800 transition-transform ease-in-out delay-100',
+    base: 'fixed top-0 left-0 z-40 sm:w-64 w-16 h-screen border-r border-gray-200 dark:border-gray-800 transition-all delay-75',
     title: 'my-2.5 text-sm font-semibold',
     show: 'sm:translate-x-0',
-    hide: '-translate-x-full hidden',
+    hide: '-translate-x-full invisible',
     container: {
       base: 'h-full px-3 py-20 overflow-y-auto bg-white dark:bg-gray-900',
       list: 'space-y-2 py-1.5 font-medium'
