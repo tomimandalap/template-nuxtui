@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { Menu, MenuItem, SubMenu } from '@/types/menu_type'
+import type { ButtonVariant } from '@nuxt/ui/dist/runtime/types'
 
 const { sidebar } = useAppConfig()
-const { show, menus } = useSidebar()
+const { show, menus, largerThanSm } = useSidebar()
 
 const accordion = ref()
 const route = useRoute()
 
-function handleDefaultOpen(itemMenu: Menu) {
+function handleDefaultOpen(itemMenu: Menu): boolean {
   let result = []
 
   if (itemMenu.childs) {
@@ -29,7 +30,7 @@ watch(
   },
 )
 
-function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
+function handleCloseOthers(type: 'menu' | 'submenu', slot?: string): void {
   if (accordion.value && !accordion.value.length) return
 
   if (type === 'menu') {
@@ -56,6 +57,60 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
     }
   })
 }
+
+function handleMenuOnDropdown(menu: Menu): Array<SubMenu[]> {
+  const first = [{ ...menu, disabled: true }]
+  delete first[0].childs
+
+  let subMenu: Array<SubMenu> = []
+
+  if (menu.childs) {
+    subMenu = menu.childs.map((item: SubMenu) => {
+      return { ...item }
+    })
+  }
+
+  return [first, subMenu]
+}
+
+const UIDropdown = computed(() => {
+  return {
+    item: {
+      padding: 'p-0',
+      disabled: 'cursor-text select-text',
+    },
+  }
+})
+
+const UIButtonMiniSidebar = computed(() => {
+  return {
+    color: {
+      white: {
+        ghost:
+          'text-black dark:text-white hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-950',
+      },
+    },
+  }
+})
+
+function handleVariantuttonMiniSidebar(subMenu: SubMenu[]): ButtonVariant {
+  const newListSubMenu: Array<boolean> = subMenu.map(
+    (item: SubMenu) => item.to === route.fullPath,
+  )
+
+  const isActive: boolean = newListSubMenu.some((state: boolean) => !!state)
+
+  return isActive ? 'soft' : 'ghost'
+}
+
+function handleColorButtonMiniSidebar(subMenu: SubMenu[]): string {
+  const newListSubMenu: Array<boolean> = subMenu.map(
+    (item: SubMenu) => item.to === route.fullPath,
+  )
+
+  const isActive: boolean = newListSubMenu.some((state: boolean) => !!state)
+  return isActive ? 'blue' : 'black'
+}
 </script>
 <template>
   <aside
@@ -72,58 +127,116 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
         >
           <!-- TITLE -->
           <template v-if="menu.title">
-            <h3 :class="sidebar.title">{{ menu.title }}</h3>
+            <!-- UP TO SMALL SCREEN -->
+            <template v-if="largerThanSm">
+              <h3 :class="sidebar.title">{{ menu.title }}</h3>
+            </template>
+
+            <!-- ONLY XSMALL SCREEN -->
+            <template v-else>
+              <hr class="mb-2" />
+            </template>
           </template>
           <!-- TITLE -->
 
           <!-- MENU -->
           <template v-if="!menu.childs || !menu.childs.length">
-            <app-sidebar-item :item="menu" />
+            <!-- UP TO SMALL SCREEN -->
+            <template v-if="largerThanSm">
+              <app-sidebar-item :item="menu" />
+            </template>
+
+            <!-- ONLY XSMALL SCREEN -->
+            <template v-else>
+              <UTooltip :text="menu.label" :popper="{ placement: 'right' }">
+                <app-sidebar-item :item="menu" />
+              </UTooltip>
+            </template>
           </template>
           <!-- MENU -->
 
           <!-- SUBMENU -->
           <template v-else>
-            <UAccordion
-              ref="accordion"
-              multiple
-              :items="[menu]"
-              :default-open="handleDefaultOpen(menu)"
-            >
-              <template #default="{ item, open }">
-                <UButton
-                  :label="item.label"
-                  variant="ghost"
-                  color="black"
-                  @click="handleCloseOthers('submenu', menu.slot)"
-                >
-                  <template v-if="item.icon" #leading>
-                    <Icon :name="item.icon" :class="sidebar.link.icon" />
-                  </template>
+            <!-- UP TO SMALL SCREEN -->
+            <template v-if="largerThanSm">
+              <UAccordion
+                ref="accordion"
+                multiple
+                :items="[menu]"
+                :default-open="handleDefaultOpen(menu)"
+              >
+                <template #default="{ item, open }">
+                  <UButton
+                    :label="item.label"
+                    variant="ghost"
+                    color="black"
+                    @click="handleCloseOthers('submenu', menu.slot)"
+                  >
+                    <template v-if="item.icon" #leading>
+                      <Icon :name="item.icon" :class="sidebar.link.icon" />
+                    </template>
 
-                  <template #trailing>
-                    <UIcon
-                      name="i-iconoir-nav-arrow-right"
-                      :class="[
-                        open && 'rotate-90',
-                        sidebar.link.icon,
-                        'ms-auto transform transition-transform duration-200',
-                      ]"
-                    />
+                    <template #trailing>
+                      <UIcon
+                        name="i-iconoir-nav-arrow-right"
+                        :class="[
+                          open && 'rotate-90',
+                          sidebar.link.icon,
+                          'ms-auto transform transition-transform duration-200',
+                        ]"
+                      />
+                    </template>
+                  </UButton>
+                </template>
+
+                <template v-slot:[`${menu.slot}`]="{ item, index }">
+                  <app-sidebar-item
+                    v-for="(submenu, idx) in item.childs"
+                    :key="`submenu-${index}-${idx}`"
+                    :item="submenu"
+                    mode="submenu"
+                    class="mb-2"
+                  />
+                </template>
+              </UAccordion>
+            </template>
+
+            <!-- ONLY XSMALL SCREEN -->
+            <template v-else>
+              <UDropdown
+                :items="handleMenuOnDropdown(menu)"
+                :ui="UIDropdown"
+                :popper="{ placement: 'right-start' }"
+                mode="hover"
+              >
+                <!-- SHOW ICON WITH BUTTON AT SIDEBAR -->
+                <UButton
+                  :ui="UIButtonMiniSidebar"
+                  :variant="handleVariantuttonMiniSidebar(menu.childs)"
+                  :color="handleColorButtonMiniSidebar(menu.childs)"
+                  size="xl"
+                >
+                  <template #leading>
+                    <Icon :name="menu.icon!" :class="sidebar.link.icon" />
                   </template>
                 </UButton>
-              </template>
 
-              <template v-slot:[`${menu.slot}`]="{ item, index }">
-                <app-sidebar-item
-                  v-for="(submenu, idx) in item.childs"
-                  :key="`submenu-${index}-${idx}`"
-                  :item="submenu"
-                  mode="submenu"
-                  class="mb-2"
-                />
-              </template>
-            </UAccordion>
+                <!-- CONTENT HEADER DROPDOWN -->
+                <template v-slot:[`${menu.slot}`]="{ item, index }">
+                  <Icon :name="item.icon" />
+                  <h1 :id="`title-content-dropdown-${index}`" class="font-bold">
+                    {{ item.label }}
+                  </h1>
+                </template>
+
+                <!-- CONTENT LIST DROPDOWN -->
+                <template #item="{ item }">
+                  <div class="w-full">
+                    <app-sidebar-item :item="item" mode="mini" />
+                  </div>
+                </template>
+              </UDropdown>
+            </template>
           </template>
           <!-- END SUBMENU -->
         </li>
@@ -131,4 +244,3 @@ function handleCloseOthers(type: 'menu' | 'submenu', slot?: string) {
     </div>
   </aside>
 </template>
-~/types/menu

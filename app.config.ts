@@ -9,7 +9,7 @@ export default defineAppConfig({
   },
   sidebar: {
     menu,
-    base: 'fixed top-0 left-0 z-40 sm:w-64 w-full h-screen border-r border-gray-200 dark:border-gray-800 transition-transform ease-in-out delay-100',
+    base: 'fixed top-0 left-0 z-40 sm:w-64 w-16 h-screen border-r border-gray-200 dark:border-gray-800 transition-transform ease-in-out delay-100',
     title: 'my-2.5 text-sm font-semibold',
     show: 'sm:translate-x-0',
     hide: '-translate-x-full hidden',
@@ -19,7 +19,9 @@ export default defineAppConfig({
     },
     link: {
       base: 'flex items-center text-black dark:text-white hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-blue-950 rounded-md px-2.5 transition-all ',
+      miniBase: 'flex justify-between items-center px-2 py-1.5 rounded-md',
       active: 'bg-blue-50 dark:bg-blue-950 text-blue-500 dark:text-blue-400 cursor-no-drop',
+      miniActive: 'bg-blue-50 dark:bg-blue-950 text-blue-500 dark:text-blue-400 cursor-no-drop',
       wrapper: 'flex items-center w-full',
       icon: 'w-5 h-5',
       label: 'text-sm truncate'
@@ -70,6 +72,13 @@ export default defineAppConfig({
       "default": {
         "loadingIcon": "i-iconoir-system-restart",
         size: "lg"
+      }
+    },
+    dropdown: {
+      "background": "bg-white dark:bg-gray-900",
+      item: {
+        "base": "group flex items-center gap-5 w-full my-1",
+        active: 'bg-blue-50 dark:bg-blue-950 text-blue-500 dark:text-blue-400',
       }
     },
     input: {
