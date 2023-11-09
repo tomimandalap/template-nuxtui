@@ -223,10 +223,15 @@ function handleColorButtonMiniSidebar(subMenu: SubMenu[]): string {
 
                 <!-- CONTENT HEADER DROPDOWN -->
                 <template v-slot:[`${menu.slot}`]="{ item, index }">
-                  <Icon :name="item.icon" />
-                  <h1 :id="`title-content-dropdown-${index}`" class="font-bold">
-                    {{ item.label }}
-                  </h1>
+                  <div
+                    :key="`title-content-dropdown-${index}`"
+                    class="flex justify-start items-center"
+                  >
+                    <Icon :name="item.icon" :class="sidebar.link.icon" />
+                    <h1 class="font-bold ms-1">
+                      {{ item.label }}
+                    </h1>
+                  </div>
                 </template>
 
                 <!-- CONTENT LIST DROPDOWN -->

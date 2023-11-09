@@ -75,10 +75,11 @@ export default defineAppConfig({
       }
     },
     dropdown: {
-      "background": "bg-white dark:bg-gray-900",
+      background: "bg-white dark:bg-gray-900",
       item: {
-        "base": "group flex items-center gap-5 w-full my-1",
-        active: 'bg-blue-50 dark:bg-blue-950 text-blue-500 dark:text-blue-400',
+        base: "group flex items-center gap-5 w-full my-1",
+        active: 'text-blue-500 dark:text-blue-400',
+        inactive: "text-black dark:text-white",
       }
     },
     input: {
